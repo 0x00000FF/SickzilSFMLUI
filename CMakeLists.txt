@@ -8,4 +8,3 @@ include_directories(SickzilSFMLUI/includes)
 
 # Include sub-projects.
 add_subdirectory ("SickzilSFMLUI")
-

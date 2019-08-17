@@ -8,13 +8,13 @@
 
 using namespace sf;
 
-using up_options = std::unique_ptr<ui_options>;
-using up_object  = std::unique_ptr<draw_object>;
-
 struct ui_options
 {
 
 };
+
+using up_options = std::unique_ptr<ui_options>;
+using up_object  = std::unique_ptr<draw_object>;
 
 class main_window : public sf::RenderWindow
 {
@@ -46,7 +46,7 @@ public:
 private:
 	int exit_code = 0;
 
-	up_options               m_options = nullptr;
+	up_options               m_options;
 	std::vector<up_object>   m_objects;
 };
 
