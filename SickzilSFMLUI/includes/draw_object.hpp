@@ -8,8 +8,6 @@ class draw_object : public sf::Drawable
 {
 public:
 	draw_object() = default;
-
-protected:
 	
 };
 

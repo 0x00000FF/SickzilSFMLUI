@@ -6,27 +6,52 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <controls.hpp>
 #include <draw_object.hpp>
 
 using namespace sf;
 
+struct sub_window_appearances
+{
+    sf::RectangleShape out_border;
+    sf::RectangleShape title_bar;
+};
+
 class sub_window : public draw_object
 {
 public:
-	sub_window();
+	sub_window() : sub_window("Window", {100, 100}) { }
 	sub_window(const std::string& title);
 	sub_window(const std::pair<int, int>& resolution);
-	sub_window(const std::string& title, const std::pair<int, int>& res) 
-		: sub_window(title), sub_window(res) {}
+	sub_window(const std::string& title, const std::pair<int, int>& res);
 
-	sub_window(const sub_window& _clone);
+	sub_window(const sub_window& _clone) = default;
 	sub_window(sub_window&&) = delete;
 
 	void draw(RenderTarget& target, RenderStates states) const;
 
+	const std::pair<int, int> get_size () const;
+	void                      set_size (const std::pair<int, int>& size);
+
+	const sf::Color           get_border_color() const;
+	void                      set_border_color(const sf::Color& color);
+
+	const sf::Color           get_fg_color() const;
+	void                      set_fg_color(const sf::Color& color);
+
+	const sf::Color           get_bg_color() const;
+	void                      set_bg_color(const sf::Color& color);
+
+protected:
+    bool                      m_dragging       = false;
+
 private:
-	std::vector<draw_object&> m_sub_controls;
-	std::string               m_title;
+    std::pair<int, int>       m_position;
+	std::vector<control>      m_sub_controls;
+	sub_window_appearances    m_appearance;
+
+public:
+	std::string               title;
 };
 
 #endif
