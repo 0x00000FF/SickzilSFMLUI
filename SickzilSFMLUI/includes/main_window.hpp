@@ -28,8 +28,27 @@ public:
 
 			switch (event.type)
 			{
+			    case Event::MouseButtonPressed:
+			        break;
+
+			    case Event::MouseButtonReleased:
+			        break;
+
+			    case Event::KeyPressed:
+			        break;
+
+			    case Event::KeyReleased:
+			        break;
+
+			    case Event::MouseWheelScrolled:
+			        break;
+
 				case Event::Closed:
 					this->close();
+					break;
+
+			    default:
+			        break;
 			}
 
 			clear();

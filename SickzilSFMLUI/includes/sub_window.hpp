@@ -13,8 +13,12 @@ using namespace sf;
 
 struct sub_window_appearances
 {
-    sf::RectangleShape out_border;
+    sf::RectangleShape window_panel;
     sf::RectangleShape title_bar;
+    sf::Text           title_text;
+
+    sf::RectangleShape window_close_button;
+    sf::Text           window_close_x;
 };
 
 class sub_window : public draw_object
