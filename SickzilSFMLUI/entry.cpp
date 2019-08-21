@@ -15,7 +15,7 @@ int WINAPI wWinMain(
 int main(int argc, char* argv[])
 #endif
 {
-	ui_options  options;
+	ui_options  options { 600, 600, "Sickzil-Machine [SFML Based UI]"};
 	main_window window(options);
 
 	return window.get_exit_code();

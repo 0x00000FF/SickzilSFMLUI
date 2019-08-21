@@ -10,7 +10,9 @@ using namespace sf;
 
 struct ui_options
 {
-
+    int         width = 400;
+    int         height = 500;
+    std::string title = "SickzilMachine";
 };
 
 using up_options = std::unique_ptr<ui_options>;
@@ -19,48 +21,17 @@ using up_object  = std::unique_ptr<draw_object>;
 class main_window : public sf::RenderWindow
 {
 public: 
-	main_window(const ui_options& _options) : RenderWindow(VideoMode(400, 400), "SickzilMachine")
+	main_window(const ui_options& _options)
+	: RenderWindow(VideoMode(_options.width, _options.height), _options.title)
 	{
-		while (this->isOpen()) 
-		{
-			Event event;
-			pollEvent(event);
 
-			switch (event.type)
-			{
-			    case Event::MouseButtonPressed:
-			        break;
-
-			    case Event::MouseButtonReleased:
-			        break;
-
-			    case Event::KeyPressed:
-			        break;
-
-			    case Event::KeyReleased:
-			        break;
-
-			    case Event::MouseWheelScrolled:
-			        break;
-
-				case Event::Closed:
-					this->close();
-					break;
-
-			    default:
-			        break;
-			}
-
-			clear();
-
-			for (auto& object : m_objects)
-				this->draw(*object);
-
-			display();
-		}
+	    begin_window_loop();
 	}
 
-	const int get_exit_code() const;
+	int get_exit_code() const;
+
+	void      begin_window_loop();
+	void      dispatch_event_to_children(const Event& event);
 
 private:
 	int exit_code = 0;
